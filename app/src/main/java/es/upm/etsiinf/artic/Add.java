@@ -30,8 +30,8 @@ import androidx.appcompat.app.AlertDialog;
 
 import es.upm.etsiinf.artic.db.MySQLiteHelper;
 
-public class Add extends Fragment {
-
+public class Add extends Fragment
+{
     private ImageView imagePlaceholder;
     private EditText editTitle;
     private Button btnSave;
@@ -166,9 +166,8 @@ public class Add extends Fragment {
 
         // Reset formulario
         editTitle.setText("");
-        imagePlaceholder.setImageResource(R.drawable.outline_add_photo_alternate_24);
+        //imagePlaceholder.setImageResource(R.drawable.outline_add_photo_alternate_24);
         imagePlaceholder.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         selectedImageUri = null;
     }
-
 }

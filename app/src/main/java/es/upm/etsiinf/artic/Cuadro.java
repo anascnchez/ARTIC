@@ -16,4 +16,14 @@ public class Cuadro
         this.lqip = lqip;
     }
 
+    public String getTitle ()
+    {
+        return this.title;
+    }
+
+    public String getImage ()
+    {
+        return this.lqip;
+    }
+
 }

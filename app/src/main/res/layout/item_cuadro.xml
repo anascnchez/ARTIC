@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/nombre_cuadro"
+        android:layout_width="214dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="240dp"
+        android:text="nombre_cuadro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imagen_cuadro"
+        android:layout_width="334dp"
+        android:layout_height="246dp"
+        app:layout_constraintBottom_toTopOf="@+id/nombre_cuadro"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.892"
+        app:srcCompat="@drawable/outline_wall_art_24"
+        tools:layout_editor_absoluteX="48dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
