@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader;
 import com.bumptech.glide.load.model.GlideUrl;
@@ -72,13 +74,21 @@ public class CuadroAdapter extends BaseAdapter {
         System.out.println(cuadro.getImageUrl());
         String url = cuadro.getImageUrl();
         if (url != null) {
+            // El servidor de Artic a veces requiere que la URL sea exactamente como espera
+            // Asegúrate de que no haya espacios al final
+            url = url.trim();
+
+            // 2. Configuramos los Headers para parecer un navegador Chrome real
             GlideUrl glideUrl = new GlideUrl(url, new LazyHeaders.Builder()
-                    .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
-                    .addHeader("Accept", "image/webp,image/apng,image/*,*/*;q=0.8")
+                    .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36")
+                    .addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8")
                     .build());
 
+            // 3. Cargamos con Glide
             Glide.with(context)
                     .load(glideUrl)
+                    .placeholder(R.drawable.placeholder) // Asegúrate de tener esta imagen en res/drawable
+                    .error(android.R.drawable.ic_dialog_alert) // Icono del sistema si falla
                     .into(imagenImageView);
         }
         // Devolvemos la vista del ítem completamente poblada

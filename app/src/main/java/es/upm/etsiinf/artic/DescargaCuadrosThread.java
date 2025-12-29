@@ -24,7 +24,7 @@ public class DescargaCuadrosThread implements Runnable
         Gson gson = gsonBuilder.create();
         String response = null;
         try {
-            String urlServerService = "https://api.artic.edu/api/v1/artworks?fields=id,title,image_id";
+            String urlServerService = "https://api.artic.edu/api/v1/artworks?fields=id,title,image_id&query[term][is_public_domain]=true";
 
             response = NetUtils.getURLText( urlServerService );
         } catch (Exception e) {

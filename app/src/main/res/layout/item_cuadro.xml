@@ -9,7 +9,7 @@
         android:id="@+id/nombre_cuadro"
         android:layout_width="214dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="240dp"
+        android:layout_marginBottom="40dp"
         android:text="nombre_cuadro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,8 +22,9 @@
         android:layout_height="246dp"
         app:layout_constraintBottom_toTopOf="@+id/nombre_cuadro"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.892"
+        app:layout_constraintVertical_bias="0.889"
         app:srcCompat="@drawable/outline_wall_art_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>
