@@ -14,8 +14,6 @@ import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
-import es.upm.etsiinf.artic.db.CuadroAdapter;
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Home#newInstance} factory method to
@@ -74,7 +72,6 @@ public class Home extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         // Inicializamos vistas usando la vista raíz

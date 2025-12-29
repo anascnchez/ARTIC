@@ -1,6 +1,8 @@
 package es.upm.etsiinf.artic;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -32,6 +34,8 @@ import es.upm.etsiinf.artic.db.MySQLiteHelper;
 
 public class Add extends Fragment
 {
+    private static final int NOTIFICATION_PERMISSION_CODE = 101;
+    NotificationHandler handler;
     private ImageView imagePlaceholder;
     private EditText editTitle;
     private Button btnSave;
@@ -163,6 +167,10 @@ public class Add extends Fragment
         db.close();
 
         Toast.makeText(getContext(), "Collection updated!", Toast.LENGTH_SHORT).show();
+
+        // Notificación al subir el cuadro
+        Notification.Builder nBuilder = handler.createNotification("Cuadro subido correctamente", "Tu cuadro se ha guardado en el apartado Collection", true);
+        handler.getManager().notify(1,nBuilder.build());
 
         // Reset formulario
         editTitle.setText("");

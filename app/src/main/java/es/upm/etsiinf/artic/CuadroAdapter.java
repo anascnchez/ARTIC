@@ -1,20 +1,17 @@
-package es.upm.etsiinf.artic.db;
+package es.upm.etsiinf.artic;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-
-import es.upm.etsiinf.artic.Cuadro;
-import es.upm.etsiinf.artic.R;
 
 public class CuadroAdapter extends BaseAdapter {
 
@@ -69,17 +66,23 @@ public class CuadroAdapter extends BaseAdapter {
         if (url != null)
         {
             url = url.trim();
+
             WebSettings settings = imagenWebView.getSettings();
             settings.setJavaScriptEnabled(true);
             settings.setDomStorageEnabled(true);
             settings.setLoadsImagesAutomatically(true);
-            settings.setMediaPlaybackRequiresUserGesture(false);
+            settings.setCacheMode(WebSettings.LOAD_DEFAULT);
 
-            imagenWebView.setWebViewClient(new WebViewClient());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+            }
+
             CookieManager cookieManager = CookieManager.getInstance();
             cookieManager.setAcceptCookie(true);
             cookieManager.setAcceptThirdPartyCookies(imagenWebView, true);
-            imagenWebView.loadUrl( url );
+
+            imagenWebView.clearHistory();
+            imagenWebView.loadUrl(url);
         }
         // Devolvemos la vista del ítem completamente poblada
         return convertView;

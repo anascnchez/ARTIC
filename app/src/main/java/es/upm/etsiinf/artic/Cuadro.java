@@ -1,10 +1,7 @@
 package es.upm.etsiinf.artic;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.model.GlideUrl;
-import com.bumptech.glide.load.model.LazyHeaders;
-
-public class Cuadro {
+public class Cuadro
+{
     private String title;
     private String image_id;
     private String iiif_url;

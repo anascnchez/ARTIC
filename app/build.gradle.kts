@@ -45,7 +45,6 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.fragment)
     annotationProcessor(libs.glide.compiler)
-    implementation("com.github.bumptech.glide:okhttp3-integration:4.15.1")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
