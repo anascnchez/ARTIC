@@ -21,8 +21,9 @@
         android:layout_width="334dp"
         android:layout_height="246dp"
         app:layout_constraintBottom_toTopOf="@+id/nombre_cuadro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.892"
-        app:srcCompat="@drawable/outline_wall_art_24"
-        tools:layout_editor_absoluteX="48dp" />
+        app:srcCompat="@drawable/outline_wall_art_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

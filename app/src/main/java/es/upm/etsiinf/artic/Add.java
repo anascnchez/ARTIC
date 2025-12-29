@@ -166,7 +166,7 @@ public class Add extends Fragment
 
         // Reset formulario
         editTitle.setText("");
-        //imagePlaceholder.setImageResource(R.drawable.outline_add_photo_alternate_24);
+        imagePlaceholder.setImageResource(R.drawable.outline_add_photo_alternate_24);
         imagePlaceholder.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         selectedImageUri = null;
     }

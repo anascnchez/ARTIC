@@ -1,7 +1,6 @@
 package es.upm.etsiinf.artic.db;
 
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,20 +9,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.LazyHeaders;
 
-import java.util.List;
+import java.io.InputStream;
+import java.util.ArrayList;
 
 import es.upm.etsiinf.artic.Cuadro;
 import es.upm.etsiinf.artic.R;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 public class CuadroAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Cuadro> cuadros;  // Lista de objetos Cuadro
+    private ArrayList<Cuadro> cuadros;  // Lista de objetos Cuadro
     private LayoutInflater inflater; // Para inflar nuestro layout personalizado
 
     // Constructor para inicializar el contexto y la lista de datos
-    public CuadroAdapter(Context context, List<Cuadro> cuadros) {
+    public CuadroAdapter(Context context, ArrayList<Cuadro> cuadros) {
         this.context = context;
         this.cuadros = cuadros;
         this.inflater = LayoutInflater.from(context);
@@ -55,8 +60,8 @@ public class CuadroAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.item_cuadro, parent, false);
         }
 
-        // Obtenemos el objeto Planeta actual basado en la posición
-        Cuadro cuadro = cuadros.get(position);
+        // Obtenemos el objeto Cuadro actual basado en la posición
+        Cuadro cuadro = cuadros.get( position );
 
         // Configuramos el nombre y la imagen del cuadro
         // Encontramos las vistas de nuestro layout personalizado
@@ -64,12 +69,19 @@ public class CuadroAdapter extends BaseAdapter {
         nombreTextView.setText(cuadro.getTitle());
 
         ImageView imagenImageView = convertView.findViewById(R.id.imagen_cuadro);
+        System.out.println(cuadro.getImageUrl());
+        String url = cuadro.getImageUrl();
+        if (url != null) {
+            GlideUrl glideUrl = new GlideUrl(url, new LazyHeaders.Builder()
+                    .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
+                    .addHeader("Accept", "image/webp,image/apng,image/*,*/*;q=0.8")
+                    .build());
 
-        Uri uri = Uri.parse(cuadro.getImage());
-        Glide.with(context)
-                .load(cuadro.getImage()) // URL o Uri
-                .into(imagenImageView);
-
+            Glide.with(context)
+                    .load(glideUrl)
+                    .into(imagenImageView);
+        }
         // Devolvemos la vista del ítem completamente poblada
         return convertView;
-    }}
+    }
+}

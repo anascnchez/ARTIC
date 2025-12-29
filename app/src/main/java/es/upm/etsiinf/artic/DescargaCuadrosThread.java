@@ -2,17 +2,18 @@ package es.upm.etsiinf.artic;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
-import java.util.Arrays;
-import java.util.List;
+import java.lang.reflect.Type;
 
 public class DescargaCuadrosThread implements Runnable
 {
-    private MainActivity mainActivity;
+    private Home home;
 
-    public DescargaCuadrosThread( MainActivity mainActivity )
+    public DescargaCuadrosThread( Home home )
     {
-        this.mainActivity = mainActivity;
+        this.home = home;
     }
 
     @Override
@@ -23,12 +24,23 @@ public class DescargaCuadrosThread implements Runnable
         Gson gson = gsonBuilder.create();
         String response = null;
         try {
-            String urlServerService = "https://api.artic.edu/api/v1/artworks";
+            String urlServerService = "https://api.artic.edu/api/v1/artworks?fields=id,title,image_id";
 
             response = NetUtils.getURLText( urlServerService );
         } catch (Exception e) {
             e.printStackTrace();
         }
-        List<Cuadro> pls = Arrays.asList(gson.fromJson(response, Cuadro[].class));
+
+        JsonObject jsonObject = gson.fromJson( response, JsonObject.class );
+        System.out.println( jsonObject.get( "data" ) );
+        System.out.println( jsonObject.get( "config" ) );
+        Type listType = new TypeToken<Data>() {}.getType();
+        Data cdrs = gson.fromJson(jsonObject, listType);
+
+        if (home.isAdded() && home.getActivity() != null) {
+            home.getActivity().runOnUiThread(() ->
+                    home.finishDownload(cdrs)
+            );
+        }
     }
 }

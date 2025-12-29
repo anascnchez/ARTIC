@@ -1,29 +1,33 @@
 package es.upm.etsiinf.artic;
-import com.google.gson.annotations.SerializedName;
-public class Cuadro
-{
-    @SerializedName("id")
-    private String id;
-    @SerializedName("title")
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.LazyHeaders;
+
+public class Cuadro {
     private String title;
-    @SerializedName("lqip")
-    private String lqip;
+    private String image_id;
+    private String iiif_url;
 
-    public Cuadro ( String id, String title, String lqip )
+    Cuadro( String title, String image_id, String iiif_url )
     {
-        this.id = id;
         this.title = title;
-        this.lqip = lqip;
+        this.image_id = image_id;
+        this.iiif_url = iiif_url;
     }
 
-    public String getTitle ()
+    public String getTitle()
     {
-        return this.title;
+        return title;
     }
 
-    public String getImage ()
+    public String getImageId()
     {
-        return this.lqip;
+        return image_id;
     }
 
+    public String getImageUrl()
+    {
+        return iiif_url + "/" + image_id + "/full/200,/0/default.jpg";
+    }
 }
