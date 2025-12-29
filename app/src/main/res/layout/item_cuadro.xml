@@ -16,7 +16,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
+    <WebView
         android:id="@+id/imagen_cuadro"
         android:layout_width="334dp"
         android:layout_height="246dp"
