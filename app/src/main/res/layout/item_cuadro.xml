@@ -3,17 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:foregroundTint="@color/blue">
 
     <TextView
         android:id="@+id/nombre_cuadro"
-        android:layout_width="214dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="40dp"
+        android:layout_width="330dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="24dp"
         android:text="nombre_cuadro"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.469"
         app:layout_constraintStart_toStartOf="parent" />
 
     <WebView
