@@ -61,7 +61,8 @@ public class Home extends Fragment {
         super.onCreate(savedInstanceState);
         // Inicializamos lista y adapter
         cuadros = new ArrayList<Cuadro>();
-        adapter = new CuadroAdapter(getActivity(), cuadros); // Context del Activity
+        // Dentro de Home.java (en onCreate o donde inicialices el adapter)
+        adapter = new CuadroAdapter(getActivity(), cuadros, R.layout.item_cuadro_home);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);

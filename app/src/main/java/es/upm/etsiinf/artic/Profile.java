@@ -56,7 +56,9 @@ public class Profile extends Fragment {
         }
 
         // Creamos el adaptador con la lista obtenida
-        CuadroAdapter adapter = new CuadroAdapter(getContext(), (ArrayList<Cuadro>) cuadrosFavoritos);
+        // Dentro de Profile.java (en onViewCreated)
+        CuadroAdapter adapter = new CuadroAdapter(getContext(), (ArrayList<Cuadro>) cuadrosFavoritos, R.layout.item_cuadro_profile);
+        listViewProfile.setAdapter(adapter);
         listViewProfile.setAdapter(adapter);
     }
 }

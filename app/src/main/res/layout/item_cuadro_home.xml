@@ -3,21 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:foregroundTint="@color/blue">
-
-    <TextView
-        android:id="@+id/nombre_cuadro"
-        android:layout_width="330dp"
-        android:layout_height="80dp"
-        android:layout_marginBottom="24dp"
-        android:text="nombre_cuadro"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
-        app:layout_constraintStart_toStartOf="parent" />
+    android:layout_height="wrap_content"
+    android:padding="8dp">
 
     <WebView
         android:id="@+id/imagen_cuadro"
@@ -29,5 +16,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.889"
-        app:srcCompat="@drawable/outline_wall_art_24" />
+        app:srcCompat="@drawable/outline_wall_art_24" >
+
+    </WebView>
+
+
+
+
+    <TextView
+        android:id="@+id/nombre_cuadro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="nombre_cuadro"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagen_cuadro" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

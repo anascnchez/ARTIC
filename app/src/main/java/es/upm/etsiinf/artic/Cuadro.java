@@ -1,5 +1,8 @@
 package es.upm.etsiinf.artic;
 
+import android.view.View;
+import android.widget.TextView;
+
 public class Cuadro
 {
     private String title;
@@ -12,6 +15,8 @@ public class Cuadro
         this.image_id = image_id;
         this.iiif_url = iiif_url;
     }
+
+
 
     public String getTitle()
     {
