@@ -71,11 +71,6 @@ public class CuadroAdapter extends BaseAdapter {
             }
         }
 
-
-
-
-
-
         return convertView;
     }
 }
