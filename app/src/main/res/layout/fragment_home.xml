@@ -18,36 +18,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <ListView
         android:id="@+id/main_list_cuadros"
-        android:layout_width="380dp"
-        android:layout_height="605dp"
-        android:layout_weight="1"
-        android:backgroundTint="@color/blue"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:divider="@null"
+        android:dividerHeight="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textAddTitle" />
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleLarge"
-        android:layout_width="7dp"
-        android:layout_height="3dp"
-        android:layout_gravity="center"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/main_list_cuadros"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/main_list_cuadros"
-        app:layout_constraintTop_toTopOf="@+id/main_list_cuadros" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="86dp"
-        android:layout_height="63dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/logoCard"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
-        android:src="@mipmap/ic_launcher_foreground"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F0F0F0"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher_foreground" />
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
