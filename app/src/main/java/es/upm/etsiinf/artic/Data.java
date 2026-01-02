@@ -12,17 +12,18 @@ public class Data
     @SerializedName("config")
     private Map<String,String> config;
 
-    public Data(ArrayList<Map<String,String>> data, Map<String,String> config )
+    public Data( ArrayList<Map<String,String>> data, Map<String,String> config )
     {
         this.data = data;
         this.config = config;
     }
     public Cuadro getCuadro( int position )
     {
+        String id = data.get(position).get("id");
         String title = data.get(position).get("title");
         String image_id = data.get(position).get("image_id");
         String iiif_url = config.get("iiif_url");
-        return new Cuadro( title, image_id, iiif_url );
+        return new Cuadro( id, title, image_id, iiif_url, null );
     }
 
     public ArrayList<Cuadro> getCuadros()

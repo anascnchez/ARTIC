@@ -47,7 +47,7 @@ public class CuadroRepository {
             String imagenId = cursor.getString(1);
             String iiifUrl = "https://www.artic.edu/iiif/2"; // URL estándar del Art Institute of Chicago
             
-            Cuadro cuadro = new Cuadro(titulo, imagenId, iiifUrl);
+            Cuadro cuadro = new Cuadro(null, titulo, imagenId, iiifUrl, null);
             cuadros.add(cuadro);
             cursor.moveToNext();
         }

@@ -5,27 +5,39 @@ import android.widget.TextView;
 
 public class Cuadro
 {
+    private String id;
     private String title;
     private String image_id;
     private String iiif_url;
+    private String description;
 
-    public Cuadro( String title, String image_id, String iiif_url )
+    public Cuadro( String id, String title, String image_id, String iiif_url, String description )
     {
+        this.id = id;
         this.title = title;
         this.image_id = image_id;
         this.iiif_url = iiif_url;
+        this.description = description;
     }
 
-
+    public String getId()
+    {
+        return this.id;
+    }
 
     public String getTitle()
     {
-        return title;
+        return this.title;
+    }
+
+    public String getDescription()
+    {
+        return this.description;
     }
 
     public String getImageId()
     {
-        return image_id;
+        return this.image_id;
     }
 
     public String getImageUrl()

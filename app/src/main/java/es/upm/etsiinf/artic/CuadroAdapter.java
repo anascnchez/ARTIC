@@ -3,7 +3,9 @@ package es.upm.etsiinf.artic;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
@@ -14,17 +16,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.FragmentManager;
+
 import java.util.ArrayList;
 
 public class CuadroAdapter extends BaseAdapter {
 
     private Context context;
+    private FragmentManager fragmentManager;
     private ArrayList<Cuadro> cuadros;
+    private Cuadro cuadroSeleccionado;
     private LayoutInflater inflater;
     private int layoutId; 
     public ArrayList<Cuadro> cuadros_favoritos = new ArrayList<>(); 
 
-    public CuadroAdapter(Context context, ArrayList<Cuadro> cuadros, int layoutId) {
+    public CuadroAdapter(FragmentManager fragmentManager, Context context, ArrayList<Cuadro> cuadros, int layoutId) {
+        this.fragmentManager = fragmentManager;
         this.context = context;
         this.cuadros = cuadros;
         this.layoutId = layoutId;
@@ -32,42 +39,81 @@ public class CuadroAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getCount() { return cuadros.size(); }
+    public int getCount()
+    {
+        return cuadros.size();
+    }
 
     @Override
-    public Object getItem(int position) { return cuadros.get(position); }
+    public Object getItem(int position)
+    {
+        return cuadros.get(position);
+    }
 
     @Override
-    public long getItemId(int position) { return position; }
+    public long getItemId(int position)
+    {
+        return position;
+    }
+
+    private void abrirDetalle( Cuadro cuadroSeleccionado )
+    {
+        InformacionExtendida dialogFragment = InformacionExtendida.newInstance( cuadroSeleccionado.getId() );
+        dialogFragment.show( fragmentManager, "cuadro_seleccionado");
+    }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = inflater.inflate(layoutId, parent, false);
+    public View getView( int position, View convertView, ViewGroup parent )
+    {
+        if ( convertView == null )
+        {
+            convertView = inflater.inflate( layoutId, parent, false );
         }
 
-        Cuadro cuadro = cuadros.get(position);
-        TextView nombreTextView = convertView.findViewById(R.id.nombre_cuadro);
-        if (nombreTextView != null) {
-            nombreTextView.setText(cuadro.getTitle());
+        cuadroSeleccionado = cuadros.get( position );
+        TextView nombreTextView = convertView.findViewById( R.id.nombre_cuadro );
+        if ( nombreTextView != null )
+        {
+            nombreTextView.setText( cuadroSeleccionado.getTitle() );
         }
 
-        View vistaImagen = convertView.findViewById(R.id.imagen_cuadro);
-        String url = cuadro.getImageUrl();
+        View vistaImagen = convertView.findViewById( R.id.imagen_cuadro );
+        String url = cuadroSeleccionado.getImageUrl();
 
-        if (url != null && vistaImagen != null) {
-            if (vistaImagen instanceof WebView) {
+        if ( url != null && vistaImagen != null )
+        {
+            if (vistaImagen instanceof WebView)
+            {
                 WebView webView = (WebView) vistaImagen;
+                webView.setOnTouchListener( new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        switch (event.getAction()) {
+                            case MotionEvent.ACTION_DOWN:
+                                // Usuario tocó el WebView
+                                Log.d("WebViewTouch", "Tocado");
+                                break;
+                            case MotionEvent.ACTION_UP:
+                                // Usuario levantó el dedo
+                                abrirDetalle( cuadroSeleccionado );
+                                Log.d("WebViewTouch", "Soltado");
+                                break;
+                        }
+                        // Retornar false para que WebView siga recibiendo el evento normalmente
+                        return false;
+                    }
+                });
                 WebSettings settings = webView.getSettings();
                 settings.setJavaScriptEnabled(true);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+                if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP )
+                {
+                    settings.setMixedContentMode( WebSettings.MIXED_CONTENT_ALWAYS_ALLOW );
                 }
-                webView.loadUrl(url.trim());
-            } else if (vistaImagen instanceof ImageView) {
-                ImageView imageView = (ImageView) vistaImagen;
+                webView.loadUrl( url.trim() );
+            } else if ( vistaImagen instanceof ImageView ) {
+                ImageView imageView = ( ImageView ) vistaImagen;
                 // Cargamos la URI de forma nativa
-                imageView.setImageURI(Uri.parse(url.trim()));
+                imageView.setImageURI( Uri.parse( url.trim() ) );
             }
         }
 

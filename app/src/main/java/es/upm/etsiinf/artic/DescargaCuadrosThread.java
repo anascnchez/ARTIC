@@ -32,8 +32,6 @@ public class DescargaCuadrosThread implements Runnable
         }
 
         JsonObject jsonObject = gson.fromJson( response, JsonObject.class );
-        System.out.println( jsonObject.get( "data" ) );
-        System.out.println( jsonObject.get( "config" ) );
         Type listType = new TypeToken<Data>() {}.getType();
         Data cdrs = gson.fromJson(jsonObject, listType);
 

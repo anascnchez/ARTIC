@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:padding="8dp">
 
     <WebView
@@ -12,16 +12,13 @@
         android:layout_height="246dp"
         app:layout_constraintBottom_toTopOf="@+id/nombre_cuadro"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.889"
-        app:srcCompat="@drawable/outline_wall_art_24" >
+        app:srcCompat="@drawable/outline_wall_art_24">
 
     </WebView>
-
-
-
 
     <TextView
         android:id="@+id/nombre_cuadro"
@@ -36,8 +33,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagen_cuadro" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
