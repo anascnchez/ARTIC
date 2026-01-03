@@ -50,17 +50,17 @@ public class Cuadro
         if (image_id.startsWith("content://") || image_id.startsWith("file://")) {
             return image_id;
         }
-        
+
         // Si es un ID del museo, construimos la URL de Artic
         String baseUrl = iiif_url;
         if (baseUrl == null || baseUrl.isEmpty()) {
             baseUrl = "https://www.artic.edu/iiif/2";
         }
-        
+
         if (baseUrl.endsWith("/")) {
             baseUrl = baseUrl.substring(0, baseUrl.length() - 1);
         }
-        
+
         return baseUrl + "/" + image_id + "/full/200,/0/default.jpg";
     }
 }

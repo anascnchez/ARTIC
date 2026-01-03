@@ -20,4 +20,8 @@
         android:name="es.upm.etsiinf.artic.Home"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/fullImageFragment"
+        android:name="es.upm.etsiinf.artic.FullImageFragment"
+        android:label="Full image" />
 </navigation>

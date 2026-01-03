@@ -48,17 +48,32 @@ public class Profile extends Fragment {
         List<Cuadro> cuadrosFavoritos = repository.getTodosLosCuadros();
         repository.close();
 
-        // Depuración: Vamos a ver qué URLs se están generando
-        for (Cuadro c : cuadrosFavoritos) {
-            Log.d("DEBUG_ARTIC", "Título: " + c.getTitle());
-            Log.d("DEBUG_ARTIC", "Image ID: " + c.getImageId());
-            Log.d("DEBUG_ARTIC", "URL Generada: " + c.getImageUrl());
-        }
+        CuadroAdapter adapter = new CuadroAdapter(
+                null,
+                getContext(),
+                new ArrayList<>(cuadrosFavoritos),
+                R.layout.item_cuadro_profile
+        );
 
-        // Creamos el adaptador con la lista obtenida
-        // Dentro de Profile.java (en onViewCreated)
-        CuadroAdapter adapter = new CuadroAdapter(this.getParentFragmentManager(), getContext(), (ArrayList<Cuadro>) cuadrosFavoritos, R.layout.item_cuadro_profile);
         listViewProfile.setAdapter(adapter);
-        listViewProfile.setAdapter(adapter);
+
+        listViewProfile.setOnItemClickListener((parent, view1, position, id) -> {
+
+            Cuadro cuadro = (Cuadro) parent.getItemAtPosition(position);
+
+            Bundle bundle = new Bundle();
+            bundle.putString("image_url", cuadro.getImageUrl());
+            bundle.putString("title", cuadro.getTitle());
+
+            FullImageFragment fragment = new FullImageFragment();
+            fragment.setArguments(bundle);
+
+            requireActivity()
+                    .getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit();
+        });
     }
 }
