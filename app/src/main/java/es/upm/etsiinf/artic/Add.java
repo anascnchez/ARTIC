@@ -168,7 +168,7 @@ public class Add extends Fragment
         db.insert("cuadros", null, values);
         db.close();
 
-        Notification.Builder nBuilder = handler.createNotification("Collection updated", "Your collection has been updated succesfully", true);
+        Notification.Builder nBuilder = handler.createNotification("Collection updated", "Your collection has been updated successfully", true);
         handler.getManager().notify(1,nBuilder.build());
         Toast.makeText(getContext(), "Collection updated!", Toast.LENGTH_SHORT).show();
 
