@@ -37,7 +37,7 @@ public class Add extends Fragment
     private ImageView imagePlaceholder;
     private EditText editTitle;
     private Button btnSave;
-
+    private NotificationHandler handler;
     private Uri selectedImageUri;
 
     private ActivityResultLauncher<Uri> cameraLauncher;
@@ -48,9 +48,9 @@ public class Add extends Fragment
     private ActivityResultLauncher<String> requestPermissionLauncher;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    public void onCreate( Bundle savedInstanceState ) {
+        super.onCreate( savedInstanceState );
+        handler = new NotificationHandler( requireContext() );
         // Registro para pedir permisos de cámara
         requestPermissionLauncher = registerForActivityResult(
                 new ActivityResultContracts.RequestPermission(),
@@ -168,7 +168,10 @@ public class Add extends Fragment
         db.insert("cuadros", null, values);
         db.close();
 
+        Notification.Builder nBuilder = handler.createNotification("Collection updated", "Your collection has been updated succesfully", true);
+        handler.getManager().notify(1,nBuilder.build());
         Toast.makeText(getContext(), "Collection updated!", Toast.LENGTH_SHORT).show();
+
 
         // Reset formulario
         editTitle.setText("");
