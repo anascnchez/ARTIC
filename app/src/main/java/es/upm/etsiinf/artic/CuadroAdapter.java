@@ -1,6 +1,7 @@
 package es.upm.etsiinf.artic;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
@@ -57,6 +58,21 @@ public class CuadroAdapter extends BaseAdapter {
         dialogFragment.show(fragmentManager, "cuadro_seleccionado");
     }
 
+    private void compartirCuadro(Cuadro cuadro) {
+        String url = cuadro.getImageUrl();
+        if (url == null || url.isEmpty()) {
+            Toast.makeText(context, "No link to share", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Intent sendIntent = new Intent(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, url);
+        sendIntent.setType("text/plain");
+
+        Intent shareIntent = Intent.createChooser(sendIntent, "Share picture");
+        context.startActivity(shareIntent);
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
@@ -104,6 +120,14 @@ public class CuadroAdapter extends BaseAdapter {
                 webView.loadUrl(url);
             }
         }
+
+        ImageButton btnShare = convertView.findViewById(R.id.btn_share);
+        if(btnShare != null){
+            btnShare.setOnClickListener(v -> {
+                compartirCuadro(cuadroSeleccionado);
+            });
+        }
+
 
         return convertView;
     }

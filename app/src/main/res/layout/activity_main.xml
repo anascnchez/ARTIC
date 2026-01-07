@@ -29,7 +29,6 @@
     <!-- Barra inferior de navegación -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
-        android:foregroundTint="@color/blue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:itemTextColor="@color/black"

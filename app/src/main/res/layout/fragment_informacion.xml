@@ -23,7 +23,8 @@
         android:layout_marginTop="48dp"
         android:nestedScrollingEnabled="false"
         android:text="TextView"
-        android:textSize="36sp"
+        android:textStyle="bold"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +33,7 @@
         android:id="@+id/descripcion_cuadro"
         android:layout_width="316dp"
         android:layout_height="320dp"
-        android:text="TextView"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
